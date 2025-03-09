@@ -19,7 +19,7 @@ DRIVER = "{ODBC Driver 17 for SQL Server}"  # Ensure this is installed in GitHub
 CONN_STR = f"DRIVER={DRIVER};SERVER={SQL_SERVER};DATABASE={SQL_DATABASE};UID={SQL_USERNAME};PWD={SQL_PASSWORD}"
 
 # 📅 Get today's timestamp (12:00:00)
-today = datetime.datetime.now().strftime("%Y-%m-%d 12:00:00")
+today = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
 
 try:
     # 🌍 Connect to OpenWeather API

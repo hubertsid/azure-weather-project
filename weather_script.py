@@ -15,7 +15,6 @@ DRIVER = "{ODBC Driver 17 for SQL Server}"
 CONN_STR = f"DRIVER={DRIVER};SERVER={SQL_SERVER};DATABASE={SQL_DATABASE};UID={SQL_USERNAME};PWD={SQL_PASSWORD}"
 
 try:
-    # 📊 Pobieranie danych pogodowych
     response = requests.get(API_URL)
     data = response.json()
 
@@ -24,7 +23,6 @@ try:
     pressure = data["main"]["pressure"]
     weather_desc = data["weather"][0]["description"]
 
-    # 🗄️ Połączenie z bazą danych i zapis
     conn = odbc.connect(CONN_STR)
     cursor = conn.cursor()
 
@@ -33,10 +31,10 @@ try:
     cursor.execute(query, (CITY, temperature, humidity, pressure, weather_desc))
 
     conn.commit()
-    print("✅ Dane zostały zapisane w Azure SQL!")
+    print("Data uploaded")
 
     cursor.close()
     conn.close()
 
 except Exception as e:
-    print("❌ Błąd:", e)
+    print("Error", e)
